@@ -55,8 +55,8 @@ export default function PromptsPage() {
 
   return (
     <ProtectedRoute>
-      <div className="max-w-7xl mx-auto">
-        <div className="flex justify-between items-center mb-8">
+      <div className="max-w-7xl mx-auto bg-white min-h-screen">
+        <div className="flex justify-between items-center mb-8 bg-white">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Browse Prompts</h1>
             <p className="mt-2 text-sm text-gray-700">
@@ -72,13 +72,13 @@ export default function PromptsPage() {
         </div>
 
         {error && (
-          <div className="rounded-md bg-red-50 p-4 mb-4">
+          <div className="rounded-md bg-red-50 p-4 mb-4 bg-white">
             <div className="text-sm text-red-700">{error}</div>
           </div>
         )}
 
         {prompts.length === 0 ? (
-          <div className="text-center py-12">
+          <div className="text-center py-12 bg-white">
             <svg
               className="mx-auto h-12 w-12 text-gray-400"
               fill="none"

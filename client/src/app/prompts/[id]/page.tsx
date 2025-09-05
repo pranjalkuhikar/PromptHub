@@ -92,7 +92,7 @@ export default function PromptDetailPage({ params }: PromptDetailPageProps) {
   const isOwner = user && prompt.userId === user._id;
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
+    <div className="max-w-4xl mx-auto px-4 py-8 bg-white min-h-screen">
       <div className="bg-white shadow overflow-hidden sm:rounded-lg">
         <div className="px-4 py-5 sm:px-6">
           <div className="flex justify-between items-start">

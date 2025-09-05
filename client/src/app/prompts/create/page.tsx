@@ -57,7 +57,7 @@ export default function CreatePromptPage() {
 
   return (
     <ProtectedRoute>
-      <div className="max-w-2xl mx-auto">
+      <div className="max-w-2xl mx-auto bg-white min-h-screen">
         <div className="bg-white shadow rounded-lg">
           <div className="px-4 py-5 sm:p-6">
             <h1 className="text-2xl font-bold text-gray-900 mb-6">Create New Prompt</h1>
