@@ -4,7 +4,28 @@ import jwt from "jsonwebtoken";
 import config from "../configs/config.ts";
 import type { StringValue } from "ms";
 
-const userSchema = new mongoose.Schema(
+interface IUser {
+  username: string;
+  email: string;
+  password: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+interface IUserMethods {
+  verifyPassword(password: string): Promise<boolean>;
+  generateToken(): Promise<string>;
+}
+
+interface IUserStatics {
+  hashPassword(password: string): Promise<string>;
+  verifyToken(token: string): Promise<any>;
+}
+
+interface IUserDocument extends IUser, mongoose.Document, IUserMethods {}
+interface IUserModel extends mongoose.Model<IUserDocument>, IUserStatics {}
+
+const userSchema = new mongoose.Schema<IUserDocument, IUserModel>(
   {
     username: { type: String, required: true, trim: true },
     email: {
@@ -67,5 +88,5 @@ userSchema.statics.verifyToken = async function (token) {
   return decoded;
 };
 
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model<IUserDocument, IUserModel>("User", userSchema);
 export default User;
