@@ -12,9 +12,8 @@ app.use(cookieParser());
 app.use(morgan("dev"));
 app.use(
   cors({
-    // origin: config.FRONTEND_URL,
-    origin: "*",
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    origin: "http://localhost:3001",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true,
   })
 );

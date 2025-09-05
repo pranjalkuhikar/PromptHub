@@ -90,9 +90,9 @@ export default function EditPromptPage({ params }: EditPromptPageProps) {
   return (
     <ProtectedRoute>
       <div className="max-w-2xl mx-auto">
-        <div className="bg-white shadow rounded-lg">
+        <div className="bg-white dark:bg-gray-800 shadow rounded-lg">
           <div className="px-4 py-5 sm:p-6">
-            <h1 className="text-2xl font-bold text-gray-900 mb-6">Edit Prompt</h1>
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Edit Prompt</h1>
             
             {error && (
               <div className="rounded-md bg-red-50 p-4 mb-4">
@@ -110,8 +110,8 @@ export default function EditPromptPage({ params }: EditPromptPageProps) {
                   name="prompt"
                   rows={4}
                   required
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                  placeholder="Enter your creative prompt..."
+                  className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                placeholder="Enter your creative prompt..."
                   value={prompt}
                   onChange={(e) => setPrompt(e.target.value)}
                 />
@@ -126,8 +126,8 @@ export default function EditPromptPage({ params }: EditPromptPageProps) {
                   id="tags"
                   name="tags"
                   required
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                  placeholder="creative, writing, art, etc..."
+                  className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                placeholder="creative, writing, art, etc..."
                   value={tags}
                   onChange={(e) => setTags(e.target.value)}
                 />

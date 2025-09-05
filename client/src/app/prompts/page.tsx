@@ -134,8 +134,14 @@ export default function PromptsPage() {
                       By {prompt.userId === user?._id ? "You" : "Community"}
                     </span>
                     <span>
-                      {new Date(prompt.createdAt).toLocaleDateString()}
-                    </span>
+                    {new Date(prompt.createdAt).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'short',
+                      day: 'numeric',
+                      hour: '2-digit',
+                      minute: '2-digit',
+                    })}
+                  </span>
                   </div>
                 </div>
                 <div className="px-4 py-4 sm:px-6 bg-gray-50 flex justify-between">
