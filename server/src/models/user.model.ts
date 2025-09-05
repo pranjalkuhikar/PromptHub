@@ -2,9 +2,9 @@ import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import config from "../configs/config.ts";
-import type { IUser, UserModel } from "../types/user.types.ts";
+import type { StringValue } from "ms";
 
-const userSchema = new mongoose.Schema<IUser>(
+const userSchema = new mongoose.Schema(
   {
     username: { type: String, required: true, trim: true },
     email: {
@@ -45,10 +45,13 @@ userSchema.methods.generateToken = async function () {
   if (!config.JWT_SECRET) {
     throw new Error("JWT_SECRET is not configured");
   }
+  const options: jwt.SignOptions = {
+    expiresIn: config.JWT_EXPIRY as StringValue,
+  };
   const token = jwt.sign(
     { id: this._id.toString() },
     config.JWT_SECRET as string,
-    { expiresIn: config.JWT_EXPIRY as string }
+    options
   );
   return token;
 };
@@ -64,5 +67,5 @@ userSchema.statics.verifyToken = async function (token) {
   return decoded;
 };
 
-const User = mongoose.model<IUser, UserModel>("User", userSchema);
+const User = mongoose.model("User", userSchema);
 export default User;
