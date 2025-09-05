@@ -12,8 +12,8 @@ const promptRoute = express.Router();
 
 promptRoute.get("/", getAllPrompt);
 promptRoute.get("/:id", getPromptById);
-promptRoute.post("/", authenticate, createPrompt);
-promptRoute.put("/:id", authenticate, updatePrompt);
-promptRoute.delete("/:id", authenticate, deletePrompt);
+promptRoute.post("/create", authenticate, createPrompt);
+promptRoute.put("/update/:id", authenticate, updatePrompt);
+promptRoute.delete("/delete/:id", authenticate, deletePrompt);
 
 export default promptRoute;

@@ -24,17 +24,17 @@ export const getPromptById = async (req: Request, res: Response) => {
 
 export const createPrompt = async (req: Request, res: Response) => {
   try {
-    const { text, tags } = req.body;
-    if (!text || !tags) {
-      return res.status(400).json({ message: "Text and tags are required" });
+    const { prompt, tags } = req.body;
+    if (!prompt || !tags) {
+      return res.status(400).json({ message: "Prompt and tags are required" });
     }
-    const prompt = new Prompt({
-      prompt: text,
+    const prompts = new Prompt({
+      prompt,
       tags,
       userId: (req as any).user?.id,
     });
-    await prompt.save();
-    res.status(201).json(prompt);
+    await prompts.save();
+    res.status(201).json(prompts);
   } catch (error) {
     res.status(500).json({ message: "Internal server error" });
   }
@@ -44,13 +44,17 @@ export const updatePrompt = async (req: Request, res: Response) => {
   try {
     const prompt = await Prompt.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
+      runValidators: true,
     });
+
     if (!prompt) {
       return res.status(404).json({ message: "Prompt not found" });
     }
-    res.status(200).json(prompt);
+
+    return res.status(200).json(prompt);
   } catch (error) {
-    res.status(500).json({ message: "Internal server error" });
+    console.error("Update error:", error);
+    return res.status(500).json({ message: "Internal server error" });
   }
 };
 
