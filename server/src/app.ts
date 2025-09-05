@@ -19,7 +19,7 @@ app.use(
   })
 );
 
-app.use("/", indexRoute);
+app.use("/api", indexRoute);
 
 app.get("/", (req: express.Request, res: express.Response) => {
   res.send("Hello 😎");

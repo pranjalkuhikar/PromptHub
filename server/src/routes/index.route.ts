@@ -3,6 +3,6 @@ import userRouter from "./user.route.ts";
 
 const indexRoute = express.Router();
 
-indexRoute.use("/user", userRouter);
+indexRoute.use("/auth", userRouter);
 
 export default indexRoute;
