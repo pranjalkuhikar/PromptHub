@@ -58,9 +58,9 @@ export default function CreatePromptPage() {
   return (
     <ProtectedRoute>
       <div className="max-w-2xl mx-auto">
-        <div className="bg-white dark:bg-gray-800 shadow rounded-lg">
+        <div className="bg-white shadow rounded-lg">
           <div className="px-4 py-5 sm:p-6">
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Create New Prompt</h1>
+            <h1 className="text-2xl font-bold text-gray-900 mb-6">Create New Prompt</h1>
 
             {error && <ErrorMessage message={error} onDismiss={() => setError('')} />}
 
@@ -74,7 +74,7 @@ export default function CreatePromptPage() {
                   name="prompt"
                   rows={4}
                   required
-                  className={`mt-1 block w-full rounded-md shadow-sm text-gray-900 dark:text-gray-100 dark:bg-gray-800 dark:border-gray-600 focus:border-blue-500 focus:ring-blue-500 sm:text-sm ${
+                  className={`mt-1 block w-full rounded-md shadow-sm text-gray-900 bg-white border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm ${
                   errors.prompt ? 'border-red-300' : 'border-gray-300'
                 }`}
                 placeholder="Enter your creative prompt..."
@@ -98,7 +98,7 @@ export default function CreatePromptPage() {
                   id="tags"
                   name="tags"
                   required
-                  className={`mt-1 block w-full rounded-md shadow-sm text-gray-900 dark:text-gray-100 dark:bg-gray-800 dark:border-gray-600 focus:border-blue-500 focus:ring-blue-500 sm:text-sm ${
+                  className={`mt-1 block w-full rounded-md shadow-sm text-gray-900 bg-white border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm ${
                   errors.tags ? 'border-red-300' : 'border-gray-300'
                 }`}
                 placeholder="creative, writing, art, etc..."
