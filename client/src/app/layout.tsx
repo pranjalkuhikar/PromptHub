@@ -16,6 +16,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "PromptHub",
   description: "Share and discover creative prompts",
+  icons: {
+    icon: "/Images/logo.png",
+  },
 };
 
 export default function RootLayout({
