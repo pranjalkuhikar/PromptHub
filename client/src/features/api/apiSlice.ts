@@ -9,7 +9,7 @@ export const apiSlice = createApi({
   }),
   endpoints: (builder) => ({
     getPrompts: builder.query<Prompt[], void>({
-      query: () => "/prompts",
+      query: () => "/prompt",
     }),
   }),
 });

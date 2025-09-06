@@ -1,6 +1,7 @@
 import express from "express";
 import indexRoute from "./routes/index.route.ts";
 import cookieParser from "cookie-parser";
+import config from "./configs/config.ts";
 import morgan from "morgan";
 import cors from "cors";
 
@@ -12,7 +13,7 @@ app.use(cookieParser());
 app.use(morgan("dev"));
 app.use(
   cors({
-    origin: "http://localhost:3001",
+    origin: config.FRONTEND_URL,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true,
   })
