@@ -4,33 +4,37 @@ import { useGetPromptsQuery } from "@/features/api/apiSlice";
 import PromptCard from "../components/PromptCard";
 
 const Page = () => {
-  const { data: prompts, isLoading, error } = useGetPromptsQuery();
-  console.log(prompts);
-
-  if (isLoading) return <div>Loading prompts...</div>;
-  if (error)
-    return (
-      <div>
-        Error: {"message" in error ? error.message : "An error occurred"}
-      </div>
-    );
+  const jobData = [
+    {
+      companyLogo: "/Images/airbnb.png",
+      companyName: "Airbnb",
+      timePosted: "5 days ago",
+      jobTitle: "Junior UI/UX Designer",
+      jobTypes: ["Contract", "Remote"],
+      salary: "$100/hr",
+      location: "Delhi, India",
+      saved: false,
+    },
+    {
+      companyLogo: "/Images/apple.png",
+      companyName: "Apple",
+      timePosted: "5 days ago",
+      jobTitle: "Graphic Designer",
+      jobTypes: ["Full-Time", "Flexible Schedule"],
+      salary: "$85-120k",
+      location: "Kerala, India",
+      saved: true,
+    },
+  ];
 
   return (
-    <main className="container mx-auto p-4">
-      <div>Home Page</div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {prompts?.map((prompt) => (
-          <PromptCard
-            key={prompt._id}
-            prompt={{
-              id: prompt._id,
-              title: prompt.prompt,
-              tags: prompt.tags,
-            }}
-          />
+    <>
+      <main className="container mx-auto p-4 flex flex-wrap justify-center gap-8">
+        {jobData.map((job, index) => (
+          <PromptCard key={index} {...job} />
         ))}
-      </div>
-    </main>
+      </main>
+    </>
   );
 };
 
