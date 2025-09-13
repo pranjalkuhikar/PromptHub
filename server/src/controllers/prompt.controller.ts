@@ -3,7 +3,10 @@ import Prompt from "../models/prompt.model.ts";
 
 export const getAllPrompt = async (req: Request, res: Response) => {
   try {
-    const prompt = await Prompt.find();
+    const prompt = await Prompt.find().populate({
+      path: "userId",
+      select: "-password",
+    });
     res.status(200).json(prompt);
   } catch (error) {
     res.status(500).json({ message: "Internal server error" });
