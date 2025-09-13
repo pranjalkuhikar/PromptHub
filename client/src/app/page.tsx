@@ -5,7 +5,6 @@ import PromptCard from "../components/common/PromptCard";
 
 const Page = () => {
   const { data, isLoading } = useGetPromptsQuery();
-  console.log(data);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -15,7 +14,12 @@ const Page = () => {
     <>
       <main className="container mx-auto p-4 flex flex-wrap justify-center gap-8">
         {data?.map((item, index) => (
-          <PromptCard key={index} prompt={item.prompt} tags={item.tags} />
+          <PromptCard
+            key={index}
+            prompt={item.prompt}
+            tags={item.tags}
+            userId={item.userId}
+          />
         ))}
       </main>
     </>

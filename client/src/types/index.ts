@@ -10,7 +10,7 @@ export interface Prompt {
   _id: string;
   prompt: string;
   tags: string[];
-  userId: string;
+  userId: User;
   createdAt: string;
   updatedAt: string;
 }
