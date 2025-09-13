@@ -19,6 +19,7 @@ const Page = () => {
             prompt={item.prompt}
             tags={item.tags}
             userId={item.userId}
+            isSaved={false}
           />
         ))}
       </main>
