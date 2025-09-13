@@ -1,10 +1,11 @@
 "use client";
 
 import { useGetPromptsQuery } from "@/features/api/apiSlice";
-import PromptCard from "../components/PromptCard";
+import PromptCard from "../components/common/PromptCard";
 
 const Page = () => {
   const { data, isLoading } = useGetPromptsQuery();
+  console.log(data);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -13,8 +14,8 @@ const Page = () => {
   return (
     <>
       <main className="container mx-auto p-4 flex flex-wrap justify-center gap-8">
-        {data?.map((job, index) => (
-          <PromptCard key={index} {...job} />
+        {data?.map((item, index) => (
+          <PromptCard key={index} prompt={item.prompt} tags={item.tags} />
         ))}
       </main>
     </>
