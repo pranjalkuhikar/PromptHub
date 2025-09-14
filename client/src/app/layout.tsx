@@ -35,8 +35,10 @@ export default function RootLayout({
         suppressHydrationWarning={true}
       >
         <Header />
-        <div className="flex-grow">
-          <Providers>{children}</Providers>
+        <div className="flex-grow w-full">
+          <div className="bg-amber-800 h-full w-full">
+            <Providers>{children}</Providers>
+          </div>
         </div>
         <Footer />
       </body>
