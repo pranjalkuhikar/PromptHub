@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="w-full py-8 px-8 text-center text-gray-600 sticky bottom-0 h-full">
+    <footer className="w-full py-8 px-8 text-center text-gray-600 h-full">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
         <p className="mb-4 md:mb-0">
           &copy; {new Date().getFullYear()} All rights reserved.

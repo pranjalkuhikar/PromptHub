@@ -29,19 +29,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="eng">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#EEEDEB] min-h-screen flex flex-col`}
+        className={`${geistSans.variable} ${geistMono.variable} bg-[#EEEDEB]`}
         suppressHydrationWarning={true}
       >
         <Header />
-        <div className="flex-grow w-full">
-          <div className="bg-amber-800 h-full w-full">
+        <div className="w-full">
             <Providers>{children}</Providers>
-          </div>
         </div>
         <Footer />
       </body>
-    </html>
+      </html>
   );
 }
