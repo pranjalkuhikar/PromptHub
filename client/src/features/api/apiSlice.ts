@@ -11,6 +11,23 @@ export const apiSlice = createApi({
     getPrompts: builder.query<Prompt[], void>({
       query: () => "/prompt",
     }),
+    register: builder.mutation({
+      query: (body) => ({
+        url: "/register",
+        method: "POST",
+        body,
+      }),
+    }),
+    login: builder.mutation({
+      query: (body) => ({
+        url: "/login",
+        method: "POST",
+        body,
+      }),
+    }),
+    profile: builder.query({
+      query: () => "/profile",
+    }),
   }),
 });
 
