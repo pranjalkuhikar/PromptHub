@@ -33,9 +33,7 @@ export default function RegisterPage() {
       setUsername("");
       setEmail("");
       setPassword("");
-      if (isRegisterSuccess) {
-        router.push("/");
-      }
+      router.push("/login");
     } catch (err: unknown) {
       setErrors(
         (
