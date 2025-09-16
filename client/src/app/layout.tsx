@@ -34,12 +34,12 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} bg-[#EEEDEB]`}
         suppressHydrationWarning={true}
       >
-        <Header />
-        <div className="w-full">
-            <Providers>{children}</Providers>
-        </div>
+        <Providers>
+          <Header />
+          <div className="w-full">{children}</div>
+        </Providers>
         <Footer />
       </body>
-      </html>
+    </html>
   );
 }

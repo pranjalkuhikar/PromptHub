@@ -3,41 +3,54 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useLoginMutation } from "@/features/api/apiSlice";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState<{ email?: string; password?: string }>(
-    {}
-  );
-  const [login] = useLoginMutation();
+  const [errors, setErrors] = useState<{
+    email?: string;
+    password?: string;
+    general?: string;
+  }>({});
+  const router = useRouter();
+  const [
+    login,
+    { isLoading: isLoggingIn, isError: isLoginError, error: loginError },
+  ] = useLoginMutation();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setErrors({});
-    setLoading(true);
+    setErrors({}); // Clear previous errors on new submission
 
     try {
       await login({ email, password }).unwrap();
-      // Handle successful login
       setEmail("");
       setPassword("");
-      setError("");
-      setLoading(false);
-      alert("Login successful!");
-    } catch (err: unknown) {
-      // Handle login errors
-      setLoading(false);
-      setError(
-        (err as { data?: { message?: string } })?.data?.message ||
-          "An error occurred during login."
-      );
-      setErrors(
-        (err as { data?: { errors?: { email?: string; password?: string } } })
-          ?.data?.errors || {}
-      );
+      router.push("/");
+    } catch {
+      if (isLoginError && loginError) {
+        if (
+          "data" in loginError &&
+          typeof loginError.data === "object" &&
+          loginError.data !== null
+        ) {
+          const errorData = loginError.data as {
+            errors?: { email?: string; password?: string };
+            message?: string;
+          };
+          setErrors({
+            email: errorData.errors?.email,
+            password: errorData.errors?.password,
+            general: errorData.message || "An unexpected error occurred",
+          });
+        } else if ("message" in loginError) {
+          setErrors({ general: loginError.message as string });
+        } else {
+          setErrors({ general: "An unexpected error occurred" });
+        }
+      }
+      console.error("Login error:", loginError);
     }
   };
 
@@ -119,10 +132,10 @@ export default function LoginPage() {
           <div>
             <button
               type="submit"
-              disabled={loading}
+              disabled={isLoggingIn}
               className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-lg font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-offset-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition duration-150 ease-in-out"
             >
-              {loading ? "Signing in..." : "Sign in"}
+              {isLoggingIn ? "Signing in..." : "Sign in"}
             </button>
           </div>
         </form>

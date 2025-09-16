@@ -3,41 +3,40 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRegisterMutation } from "@/features/api/apiSlice";
+import { useRouter } from "next/navigation";
 
 export default function RegisterPage() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [, setError] = useState("");
-  const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<{
     username?: string;
     email?: string;
     password?: string;
   }>({});
-  const [register] = useRegisterMutation();
+  const [
+    register,
+    {
+      isLoading: isRegistering,
+      isError: isRegisterError,
+      isSuccess: isRegisterSuccess,
+      error: registerError,
+    },
+  ] = useRegisterMutation();
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrors({});
-    setLoading(true);
-
     try {
       await register({ username, email, password }).unwrap();
-      // Handle successful registration
       setUsername("");
       setEmail("");
       setPassword("");
-      setError("");
-      setLoading(false);
-      alert("Registration successful!");
+      if (isRegisterSuccess) {
+        router.push("/");
+      }
     } catch (err: unknown) {
-      // Handle registration errors
-      setLoading(false);
-      setError(
-        (err as { data?: { message?: string } })?.data?.message ||
-          "An error occurred during registration."
-      );
       setErrors(
         (
           err as {
@@ -57,6 +56,12 @@ export default function RegisterPage() {
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white">
             Create your account
           </h2>
+          {isRegisterError && registerError && (
+            <p className="mt-2 text-center text-sm text-red-600">
+              {(registerError as { data?: { message?: string } })?.data
+                ?.message || "An error occurred."}
+            </p>
+          )}
           <p className="mt-2 text-center text-sm text-gray-600 dark:text-gray-300">
             Or{" "}
             <Link
@@ -154,10 +159,10 @@ export default function RegisterPage() {
           <div>
             <button
               type="submit"
-              disabled={loading}
+              disabled={isRegistering}
               className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-lg font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-offset-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition duration-150 ease-in-out"
             >
-              {loading ? "Creating account..." : "Create account"}
+              {isRegistering ? "Creating account..." : "Create account"}
             </button>
           </div>
         </form>
