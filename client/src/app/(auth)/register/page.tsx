@@ -19,7 +19,6 @@ export default function RegisterPage() {
     {
       isLoading: isRegistering,
       isError: isRegisterError,
-      isSuccess: isRegisterSuccess,
       error: registerError,
     },
   ] = useRegisterMutation();
