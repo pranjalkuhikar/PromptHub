@@ -51,6 +51,14 @@ const Header: React.FC = () => {
             <>
               <li>
                 <Link
+                  href="/create-prompt"
+                  className="text-gray-700 px-5 py-2 rounded-2xl hover:bg-[#3C5A9F] bg-white hover:text-gray-100 transition-colors"
+                >
+                  Create Prompt
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/profile"
                   className="text-gray-700 px-5 py-2 rounded-2xl hover:bg-[#3C5A9F] bg-white hover:text-gray-100 transition-colors"
                 >

@@ -13,6 +13,7 @@ export const apiSlice = createApi({
   endpoints: (builder) => ({
     getPrompts: builder.query<Prompt[], void>({
       query: () => "/prompt",
+      providesTags: ["Auth"],
     }),
     register: builder.mutation({
       query: (body) => ({
@@ -47,6 +48,15 @@ export const apiSlice = createApi({
     getPromptById: builder.query<Prompt, string>({
       query: (id) => `/prompt/${id}`,
     }),
+    createPrompt: builder.mutation<Prompt, { prompt: string; tags: string[] }>({
+      // Add this line
+      query: (body) => ({
+        url: "/prompt/create",
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["Auth"],
+    }),
   }),
 });
 
@@ -58,4 +68,5 @@ export const {
   useProfileQuery,
   useGetUserPromptsQuery,
   useGetPromptByIdQuery,
+  useCreatePromptMutation,
 } = apiSlice;
