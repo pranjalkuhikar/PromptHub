@@ -25,13 +25,11 @@ export const register = async (req: Request, res: Response) => {
     });
 
     await user.save();
-    const { password: pwd, ...userWithoutPassword } = user.toObject();
-    res
-      .status(201)
-      .json({
-        message: "User registered successfully",
-        user: userWithoutPassword,
-      });
+    const { password: _, ...userWithoutPassword } = user.toObject();
+    res.status(201).json({
+      message: "User registered successfully",
+      user: userWithoutPassword,
+    });
   } catch (error) {
     console.error("Registration error:", error);
     return res.status(500).json({ error: "Failed to register user" });
@@ -64,8 +62,9 @@ export const login = async (req: Request, res: Response) => {
   });
 
   console.log(user);
-  const { password: pwd, ...userWithoutPassword } = user.toObject();
-  console.log(userWithoutPassword);
+
+  const { password: _, ...userWithoutPassword } = user.toObject();
+
   res
     .status(200)
     .json({ message: "Login successful", user: userWithoutPassword });
@@ -88,5 +87,20 @@ export const profile = async (req: Request, res: Response) => {
     res.status(200).json({ user });
   } catch (error) {
     return res.status(500).json({ error: "Failed to fetch profile" });
+  }
+};
+
+export const getUserByUsername = async (req: Request, res: Response) => {
+  try {
+    const { username } = req.params;
+    const user = await User.findOne({ username }).select("-password");
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    res.status(200).json({ user });
+  } catch (error) {
+    return res.status(500).json({ error: "Failed to fetch user" });
   }
 };

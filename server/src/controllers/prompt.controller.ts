@@ -1,5 +1,6 @@
 import type { Request, Response } from "express";
 import Prompt from "../models/prompt.model.ts";
+import User from "../models/user.model.ts";
 
 export const getAllPrompt = async (req: Request, res: Response) => {
   try {
@@ -32,6 +33,25 @@ export const getUserPrompts = async (req: Request, res: Response) => {
       return res.status(401).json({ message: "Unauthorized" });
     }
     const prompts = await Prompt.find({ userId }).populate({
+      path: "userId",
+      select: "-password",
+    });
+    res.status(200).json(prompts);
+  } catch (error) {
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+export const getPromptsByUsername = async (req: Request, res: Response) => {
+  try {
+    const { username } = req.params;
+    const user = await User.findOne({ username });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const prompts = await Prompt.find({ userId: user._id }).populate({
       path: "userId",
       select: "-password",
     });

@@ -34,7 +34,7 @@ const Header: React.FC = () => {
           <li>
             <Link
               href="/"
-              className="text-gray-700 px-5 py-2 rounded-2xl hover:bg-[#3C5A9F] bg-white hover:text-gray-100 transition-colors"
+              className="text-gray-700 px-5 py-2 rounded-2xl hover:bg-gray-600 active:bg-gray-600 bg-white hover:text-gray-100 transition-colors"
             >
               Home
             </Link>
@@ -44,7 +44,7 @@ const Header: React.FC = () => {
               <li>
                 <Link
                   href="/create-prompt"
-                  className="text-gray-700 px-5 py-2 rounded-2xl hover:bg-[#3C5A9F] bg-white hover:text-gray-100 transition-colors"
+                  className="text-gray-700 px-5 py-2 rounded-2xl hover:bg-gray-600 active:bg-gray-600 bg-white hover:text-gray-100 transition-colors"
                 >
                   Create Prompt
                 </Link>
@@ -52,7 +52,7 @@ const Header: React.FC = () => {
               <li>
                 <Link
                   href="/profile"
-                  className="text-gray-700 px-5 py-2 rounded-2xl hover:bg-[#3C5A9F] bg-white hover:text-gray-100 transition-colors"
+                  className="text-gray-700 px-5 py-2 rounded-2xl hover:bg-gray-600 active:bg-gray-600 bg-white hover:text-gray-100 transition-colors"
                 >
                   Profile
                 </Link>
@@ -71,7 +71,7 @@ const Header: React.FC = () => {
               <li>
                 <Link
                   href="/login"
-                  className="text-gray-100 px-5 py-2 rounded-2xl hover:bg-[#3C5A9F] bg-blue-600 hover:text-gray-100 transition-colors"
+                  className="text-gray-100 px-5 py-2 rounded-2xl hover:bg-gray-600 active:bg-gray-600 bg-blue-600 hover:text-gray-100 transition-colors"
                 >
                   Login
                 </Link>
@@ -79,7 +79,7 @@ const Header: React.FC = () => {
               <li>
                 <Link
                   href="/register"
-                  className="text-gray-100 px-5 py-2 rounded-2xl hover:bg-[#3C5A9F] bg-blue-600 hover:text-gray-100 transition-colors"
+                  className="text-gray-100 px-5 py-2 rounded-2xl hover:bg-gray-600 active:bg-gray-600 bg-blue-600 hover:text-gray-100 transition-colors"
                 >
                   Register
                 </Link>
