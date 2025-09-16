@@ -12,7 +12,7 @@ const Page = () => {
 
   return (
     <>
-      <main className="container mx-auto p-4 flex flex-wrap justify-center gap-8">
+      <main className="container mx-auto p-4 flex flex-wrap justify-center gap-8 ">
         {data?.map((item, index) => (
           <PromptCard
             key={index}

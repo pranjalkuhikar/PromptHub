@@ -25,6 +25,22 @@ export const getPromptById = async (req: Request, res: Response) => {
   }
 };
 
+export const getUserPrompts = async (req: Request, res: Response) => {
+  try {
+    const userId = (req as any).user?.id;
+    if (!userId) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+    const prompts = await Prompt.find({ userId }).populate({
+      path: "userId",
+      select: "-password",
+    });
+    res.status(200).json(prompts);
+  } catch (error) {
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
 export const createPrompt = async (req: Request, res: Response) => {
   try {
     const { prompt, tags } = req.body;

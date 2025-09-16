@@ -40,6 +40,13 @@ export const apiSlice = createApi({
       query: () => "/profile",
       providesTags: ["Auth"],
     }),
+    getUserPrompts: builder.query<Prompt[], void>({
+      query: () => "/prompt/user",
+      providesTags: ["Auth"],
+    }),
+    getPromptById: builder.query<Prompt, string>({
+      query: (id) => `/prompt/${id}`,
+    }),
   }),
 });
 
@@ -49,4 +56,6 @@ export const {
   useLoginMutation,
   useLogoutMutation,
   useProfileQuery,
+  useGetUserPromptsQuery,
+  useGetPromptByIdQuery,
 } = apiSlice;
