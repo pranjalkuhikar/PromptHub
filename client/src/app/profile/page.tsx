@@ -45,10 +45,10 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="min-h-[82vh]  dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-[82vh] py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
         {/* User Info Section */}
-        <div className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg space-y-6 border border-gray-200 dark:border-gray-700 text-center mb-12">
+        <div className="bg-white p-8 rounded-xl shadow-lg space-y-6 text-center mb-12">
           <div className="flex flex-col items-center">
             <div className="relative w-36 h-36 mb-6">
               <Image
@@ -56,17 +56,15 @@ export default function ProfilePage() {
                 alt="Profile Avatar"
                 layout="fill"
                 objectFit="cover"
-                className="rounded-full border-4 border-blue-500 dark:border-blue-600 shadow-md"
+                className="rounded-full border-4 border-gray-500 shadow-md"
               />
             </div>
-            <h2 className="text-4xl font-extrabold text-gray-900 dark:text-white mb-2">
+            <h2 className="text-4xl font-extrabold text-gray-900 mb-2">
               {user.user.username}
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 mb-4">
-              {user.user.email}
-            </p>
+            <p className="text-xl text-gray-600 mb-4">{user.user.email}</p>
             {user.bio && (
-              <p className="text-md text-gray-700 dark:text-gray-200 leading-relaxed max-w-prose">
+              <p className="text-md text-gray-700 leading-relaxed max-w-prose">
                 {user.bio}
               </p>
             )}
@@ -75,9 +73,7 @@ export default function ProfilePage() {
 
         {/* User Prompts Section */}
         <div className="text-center mb-8">
-          <h3 className="text-3xl font-bold text-gray-900 dark:text-white">
-            Your Prompts
-          </h3>
+          <h3 className="text-3xl font-bold text-gray-900">Your Prompts</h3>
         </div>
 
         {data && data.length > 0 ? (
@@ -93,7 +89,7 @@ export default function ProfilePage() {
             ))}
           </div>
         ) : (
-          <div className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg text-center text-gray-600 dark:text-gray-300 text-lg">
+          <div className="bg-white p-8 rounded-xl shadow-lg text-center text-gray-600 text-lg">
             You haven&apos;t created any prompts yet. Start sharing your
             creativity!
           </div>
