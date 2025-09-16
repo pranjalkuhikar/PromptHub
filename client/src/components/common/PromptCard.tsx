@@ -6,7 +6,7 @@ import { Bookmark, Copy, Check } from "lucide-react";
 interface PromptCardProps {
   prompt: string;
   tags: string[];
-  userId: { username: string };
+  userId?: { username?: string };
   isSaved: boolean;
 }
 
@@ -33,11 +33,17 @@ const PromptCard: React.FC<PromptCardProps> = ({ prompt, tags, userId }) => {
               sizes="100vw"
               className="rounded-full h-10 w-10 object-cover"
             />
-            <Link href={`/profile/${userId.username}`}>
-              <h3 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors duration-200">
-                {userId.username}
+            {userId?.username ? (
+              <Link href={`/profile/${userId.username}`}>
+                <h3 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors duration-200">
+                  {userId.username}
+                </h3>
+              </Link>
+            ) : (
+              <h3 className="text-lg font-semibold text-gray-900">
+                Unknown User
               </h3>
-            </Link>
+            )}
           </div>
           <div className="flex items-center gap-1">
             <button
