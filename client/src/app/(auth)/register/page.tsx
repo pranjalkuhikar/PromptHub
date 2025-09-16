@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRegisterMutation } from "@/features/api/apiSlice";
 
 export default function RegisterPage() {
   const [username, setUsername] = useState("");
@@ -14,12 +15,39 @@ export default function RegisterPage() {
     email?: string;
     password?: string;
   }>({});
+  const [register] = useRegisterMutation();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError("");
     setErrors({});
     setLoading(true);
+
+    try {
+      await register({ username, email, password }).unwrap();
+      // Handle successful registration
+      setUsername("");
+      setEmail("");
+      setPassword("");
+      setError("");
+      setLoading(false);
+      alert("Registration successful!");
+    } catch (err: unknown) {
+      // Handle registration errors
+      setLoading(false);
+      setError(
+        (err as { data?: { message?: string } })?.data?.message ||
+          "An error occurred during registration."
+      );
+      setErrors(
+        (
+          err as {
+            data?: {
+              errors?: { username?: string; email?: string; password?: string };
+            };
+          }
+        )?.data?.errors || {}
+      );
+    }
   };
 
   return (

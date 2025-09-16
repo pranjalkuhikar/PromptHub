@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useLoginMutation } from "@/features/api/apiSlice";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -11,12 +12,33 @@ export default function LoginPage() {
   const [errors, setErrors] = useState<{ email?: string; password?: string }>(
     {}
   );
+  const [login] = useLoginMutation();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError("");
     setErrors({});
     setLoading(true);
+
+    try {
+      await login({ email, password }).unwrap();
+      // Handle successful login
+      setEmail("");
+      setPassword("");
+      setError("");
+      setLoading(false);
+      alert("Login successful!");
+    } catch (err: unknown) {
+      // Handle login errors
+      setLoading(false);
+      setError(
+        (err as { data?: { message?: string } })?.data?.message ||
+          "An error occurred during login."
+      );
+      setErrors(
+        (err as { data?: { errors?: { email?: string; password?: string } } })
+          ?.data?.errors || {}
+      );
+    }
   };
 
   return (
