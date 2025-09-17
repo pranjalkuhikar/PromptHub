@@ -7,9 +7,7 @@
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "allowImportingTsExtensions": true,
-    "noEmit": true
+    "forceConsistentCasingInFileNames": true
   },
   "include": ["server.ts", "src/**/*.ts"], // Include your TypeScript files
   "exclude": ["node_modules"]
