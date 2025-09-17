@@ -99,10 +99,19 @@ export const updatePrompt = async (req: Request, res: Response) => {
 
 export const deletePrompt = async (req: Request, res: Response) => {
   try {
-    const prompt = await Prompt.findByIdAndDelete(req.params.id);
+    const prompt = await Prompt.findById(req.params.id);
+
     if (!prompt) {
       return res.status(404).json({ message: "Prompt not found" });
     }
+
+    if (prompt.userId.toString() !== (req as any).user.id) {
+      return res
+        .status(403)
+        .json({ message: "Unauthorized to delete this prompt" });
+    }
+
+    await Prompt.findByIdAndDelete(req.params.id);
     res.status(200).json({ message: "Prompt deleted successfully" });
   } catch (error) {
     res.status(500).json({ message: "Internal server error" });

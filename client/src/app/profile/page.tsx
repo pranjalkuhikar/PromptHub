@@ -20,6 +20,8 @@ export default function ProfilePage() {
     isError: isPromptsError,
   } = useGetUserPromptsQuery();
 
+  const currentUserId = user?.user._id;
+
   if (isUserLoading || isPromptsLoading) {
     return (
       <div className="min-h-[82vh] flex items-center justify-center text-lg text-gray-700 dark:text-gray-300">
@@ -76,13 +78,15 @@ export default function ProfilePage() {
 
         {data && data.length > 0 ? (
           <div className="container mx-auto p-4 flex flex-wrap justify-center gap-8">
-            {data?.map((item, index) => (
+            {data?.map((item) => (
               <PromptCard
-                key={index}
+                key={item._id}
+                id={item._id}
                 prompt={item.prompt}
                 tags={item.tags}
                 userId={item.userId}
-                isSaved={false}
+                showActions
+                currentUserId={currentUserId}
               />
             ))}
           </div>

@@ -61,8 +61,6 @@ export const login = async (req: Request, res: Response) => {
     maxAge: 7 * 24 * 60 * 60 * 1000,
   });
 
-  console.log(user);
-
   const { password: _, ...userWithoutPassword } = user.toObject();
 
   res
