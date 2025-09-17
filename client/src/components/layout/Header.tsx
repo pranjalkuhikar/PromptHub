@@ -3,17 +3,15 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { useProfileQuery, useLogoutMutation } from "@/features/api/apiSlice";
 
 const Header: React.FC = () => {
-  const router = useRouter();
   const { isSuccess: isLoggedIn } = useProfileQuery({});
   const [logout] = useLogoutMutation();
 
   const handleLogout = async () => {
     await logout({});
-    router.push("/login");
+    window.location.href = "/login";
   };
 
   return (

@@ -14,7 +14,7 @@ const Page = () => {
   }
 
   return (
-    <>
+    <div className="min-h-[80vh]">
       <main className="container mx-auto p-4 flex flex-wrap justify-center gap-8 ">
         {data?.map((item) => (
           <PromptCard
@@ -28,7 +28,7 @@ const Page = () => {
           />
         ))}
       </main>
-    </>
+    </div>
   );
 };
 

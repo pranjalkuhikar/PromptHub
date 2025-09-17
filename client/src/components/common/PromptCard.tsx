@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Bookmark, Copy, Check } from "lucide-react";
+import { Copy, Check } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 import { useDeletePromptMutation } from "@/features/api/apiSlice";
@@ -25,7 +25,6 @@ const PromptCard: React.FC<PromptCardProps> = ({
 }) => {
   const [deletePrompt] = useDeletePromptMutation();
   const [copied, setCopied] = useState(false);
-  const [isSaved, setIsSaved] = useState(false);
   const router = useRouter();
 
   const handleCopy = useCallback(() => {
@@ -74,23 +73,23 @@ const PromptCard: React.FC<PromptCardProps> = ({
               </h3>
             )}
           </div>
-          <div className="flex items-center gap-1">
-            <button
-              onClick={() => setIsSaved(!isSaved)}
-              className={`flex items-center gap-1 px-2 py-2 ${
-                isSaved ? "bg-gray-200" : "bg-gray-100"
-              } text-sm rounded-md`}
-            >
-              {isSaved ? (
-                <span className="flex items-center gap-1">
-                  Saved <Bookmark fill="currentColor" />
-                </span>
-              ) : (
-                <span className="flex items-center gap-1">
-                  Save <Bookmark />
-                </span>
-              )}
-            </button>
+          <div>
+            {showActions && isOwner && (
+              <div className="flex gap-2 mt-3">
+                <button
+                  onClick={handleEdit}
+                  className="px-3 py-1 bg-blue-500 cursor-pointer text-white rounded-md text-sm"
+                >
+                  Edit
+                </button>
+                <button
+                  onClick={handleDelete}
+                  className="px-3 py-1 bg-red-500 cursor-pointer text-white rounded-md text-sm"
+                >
+                  Delete
+                </button>
+              </div>
+            )}
           </div>
         </div>
 
@@ -113,22 +112,6 @@ const PromptCard: React.FC<PromptCardProps> = ({
             </span>
           ))}
         </div>
-        {showActions && isOwner && (
-          <div className="flex gap-2">
-            <button
-              onClick={handleEdit}
-              className="px-3 py-1 bg-blue-500 text-white rounded-md text-sm"
-            >
-              Edit
-            </button>
-            <button
-              onClick={handleDelete}
-              className="px-3 py-1 bg-red-500 text-white rounded-md text-sm"
-            >
-              Delete
-            </button>
-          </div>
-        )}
       </div>
     </div>
   );

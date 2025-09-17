@@ -9,14 +9,17 @@ import {
 
 const EditPromptPage = () => {
   const router = useRouter();
-  const id =
-    typeof window !== "undefined"
-      ? window.location.pathname.split("/").pop()
-      : undefined;
+  const [id, setId] = useState<string | undefined>(undefined);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setId(window.location.pathname.split("/").pop());
+    }
+  }, []);
 
   const {
     data: promptData,
-    isLoading,
+    isLoading: isPromptLoading,
     isError,
   } = useGetPromptByIdQuery(id || "", {
     skip: !id,
@@ -62,7 +65,7 @@ const EditPromptPage = () => {
     }
   };
 
-  if (isLoading) {
+  if (isPromptLoading) {
     return <div>Loading...</div>;
   }
 

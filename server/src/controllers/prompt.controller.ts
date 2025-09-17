@@ -16,7 +16,9 @@ export const getAllPrompt = async (req: Request, res: Response) => {
 
 export const getPromptById = async (req: Request, res: Response) => {
   try {
-    const prompt = await Prompt.findById(req.params.id);
+    const { id } = req.params;
+    const prompt = await Prompt.findById(id);
+
     if (!prompt) {
       return res.status(404).json({ message: "Prompt not found" });
     }

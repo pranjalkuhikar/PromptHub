@@ -56,9 +56,10 @@ export default function ProfilePage() {
               <Image
                 src={user?.avatar || "/Images/profile.png"}
                 alt="Profile Avatar"
-                layout="fill"
-                objectFit="cover"
-                className="rounded-full border-4 border-gray-500 shadow-md"
+                height={0}
+                width="0"
+                sizes="100vw"
+                className="rounded-full border-4 border-gray-500 shadow-md object-cover h-full w-full"
               />
             </div>
             <h2 className="text-4xl font-extrabold text-gray-900 mb-2">
