@@ -6,8 +6,8 @@ import {
   updatePrompt,
   deletePrompt,
   getUserPrompts,
-} from "../controllers/prompt.controller";
-import { authenticate } from "../middlewares/auth.middleware";
+} from "../controllers/prompt.controller.js";
+import { authenticate } from "../middlewares/auth.middleware.js";
 
 const promptRoute = express.Router();
 

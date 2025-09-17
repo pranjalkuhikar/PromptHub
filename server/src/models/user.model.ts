@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import config from "../configs/config";
+import config from "../configs/config.js";
 import type { StringValue } from "ms";
 
 interface IUser {

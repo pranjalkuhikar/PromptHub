@@ -1,14 +1,15 @@
 {
   "compilerOptions": {
     "target": "es2020",
-    "module": "commonjs",
-    "outDir": "./dist", // This is important: output to 'dist' folder
+    "module": "es2020",
+    "outDir": "./dist",
     "rootDir": "./",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "bundler"
   },
-  "include": ["server.ts", "src/**/*.ts"], // Include your TypeScript files
+  "include": ["server.ts", "src/**/*.ts"],
   "exclude": ["node_modules"]
 }

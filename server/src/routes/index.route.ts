@@ -1,7 +1,7 @@
 import express from "express";
-import userRouter from "./user.route";
-import profileRoute from "./profile.route";
-import promptRoute from "./prompt.route";
+import userRouter from "./user.route.js";
+import profileRoute from "./profile.route.js";
+import promptRoute from "./prompt.route.js";
 
 const indexRoute = express.Router();
 
