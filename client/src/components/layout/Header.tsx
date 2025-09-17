@@ -86,7 +86,7 @@ const Header: React.FC = () => {
                     handleLogout();
                     setIsMobileMenuOpen(false);
                   }}
-                  className="text-gray-100 px-5 py-2 rounded-2xl hover:bg-red-400 bg-red-600 hover:text-gray-100 transition-colors"
+                  className="text-gray-100 px-5 py-2 -mt-2 rounded-2xl hover:bg-red-400 bg-red-600 hover:text-gray-100 transition-colors"
                 >
                   Logout
                 </button>
