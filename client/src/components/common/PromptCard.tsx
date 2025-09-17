@@ -2,8 +2,10 @@ import React, { useState, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Bookmark, Copy, Check } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { useDeletePromptMutation } from "@/features/api/apiSlice";
+import {
+  useDeletePromptMutation,
+  useUpdatePromptMutation,
+} from "@/features/api/apiSlice";
 
 interface PromptCardProps {
   id: string;
@@ -14,9 +16,16 @@ interface PromptCardProps {
   currentUserId?: string;
 }
 
-const PromptCard: React.FC<PromptCardProps> = ({ id, prompt, tags, userId, showActions, currentUserId }) => {
-  const router = useRouter();
+const PromptCard: React.FC<PromptCardProps> = ({
+  id,
+  prompt,
+  tags,
+  userId,
+  showActions,
+  currentUserId,
+}) => {
   const [deletePrompt] = useDeletePromptMutation();
+  const [updatePrompt] = useUpdatePromptMutation();
   const [copied, setCopied] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
 
@@ -32,6 +41,15 @@ const PromptCard: React.FC<PromptCardProps> = ({ id, prompt, tags, userId, showA
       window.location.reload();
     } catch (error) {
       console.error("Failed to delete prompt", error);
+    }
+  };
+
+  const handleEdit = async () => {
+    try {
+      await updatePrompt({ id, prompt, tags }).unwrap();
+      window.location.reload();
+    } catch (error) {
+      console.error("Failed to update prompt", error);
     }
   };
 
@@ -104,7 +122,7 @@ const PromptCard: React.FC<PromptCardProps> = ({ id, prompt, tags, userId, showA
         {showActions && isOwner && (
           <div className="flex gap-2">
             <button
-              onClick={() => router.push(`/edit-prompt/${id}`)}
+              onClick={handleEdit}
               className="px-3 py-1 bg-blue-500 text-white rounded-md text-sm"
             >
               Edit

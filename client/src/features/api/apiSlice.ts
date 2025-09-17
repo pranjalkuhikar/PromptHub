@@ -60,6 +60,24 @@ export const apiSlice = createApi({
       }),
       invalidatesTags: ["Auth"],
     }),
+    deletePrompt: builder.mutation<{ message: string }, string>({
+      query: (id) => ({
+        url: `/prompt/delete/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Auth"],
+    }),
+    updatePrompt: builder.mutation<
+      Prompt,
+      { id: string; prompt: string; tags: string[] }
+    >({
+      query: (body) => ({
+        url: `/prompt/update/${body.id}`,
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["Auth"],
+    }),
   }),
 });
 
@@ -73,4 +91,6 @@ export const {
   useGetPromptByIdQuery,
   useCreatePromptMutation,
   useGetUserByProfileQuery,
+  useDeletePromptMutation,
+  useUpdatePromptMutation,
 } = apiSlice;
