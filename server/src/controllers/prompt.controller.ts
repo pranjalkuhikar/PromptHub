@@ -1,6 +1,5 @@
 import type { Request, Response } from "express";
 import Prompt from "../models/prompt.model.ts";
-import User from "../models/user.model.ts";
 
 export const getAllPrompt = async (req: Request, res: Response) => {
   try {
