@@ -48,9 +48,9 @@ export default function ProfilePage() {
 
   return (
     <div className="min-h-[82vh] py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
+      <div className="">
         {/* User Info Section */}
-        <div className="bg-white p-8 rounded-xl shadow-lg space-y-6 text-center mb-12">
+        <div className="bg-white p-8 max-w-4xl mx-auto rounded-xl shadow-lg space-y-6 text-center mb-12">
           <div className="flex flex-col items-center">
             <div className="relative w-36 h-36 mb-6">
               <Image
@@ -78,7 +78,7 @@ export default function ProfilePage() {
         </div>
 
         {data && data.length > 0 ? (
-          <div className="container mx-auto p-4 flex flex-wrap justify-center gap-8">
+          <div className="w-full p-4 flex flex-wrap justify-center gap-8">
             {data?.map((item) => (
               <PromptCard
                 key={item._id}

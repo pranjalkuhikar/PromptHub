@@ -49,7 +49,7 @@ const PromptCard: React.FC<PromptCardProps> = ({
   const isOwner = currentUserId && userId && userId._id === currentUserId;
 
   return (
-    <div className="bg-white rounded-xl shadow-md p-6 m-4 w-96">
+    <div className="bg-white rounded-xl shadow-md p-6 m-4 w-96 h-fit">
       <div className="mb-4 flex flex-col gap-2">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2 font-mono">
