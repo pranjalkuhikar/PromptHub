@@ -5,10 +5,12 @@ A full-stack application for managing and sharing prompts.
 ## Deployment to Render
 
 ### Prerequisites
+
 - Node.js 18 or higher
 - MongoDB database
 
 ### Environment Variables
+
 Set the following environment variables in your Render dashboard:
 
 ```
@@ -21,6 +23,7 @@ FRONTEND_URL=your_frontend_url
 ### Deployment Steps
 
 1. **Push your code to GitHub**
+
    ```bash
    git add .
    git commit -m "Ready for Render deployment"
@@ -28,6 +31,7 @@ FRONTEND_URL=your_frontend_url
    ```
 
 2. **Create Web Service on Render**
+
    - Go to https://render.com
    - Click "New Web Service"
    - Connect your GitHub repository
@@ -42,19 +46,25 @@ FRONTEND_URL=your_frontend_url
 ### Common Issues and Solutions
 
 #### "Cannot find module '/opt/render/project/src/server/dist/server.js'"
+
 This error typically occurs when:
+
 1. **Build command not running**: Ensure the build command is set correctly
 2. **TypeScript compilation failing**: Check the build logs for TypeScript errors
 3. **Wrong working directory**: The commands should include `cd server` to navigate to the correct directory
 
 #### Build Configuration
+
 The project has been configured with:
+
 - ES modules support (`"type": "module"` in package.json)
 - Proper TypeScript configuration (tsconfig.json)
 - All import statements include `.js` extensions for ES module compatibility
 
 ### Testing Locally
+
 Before deploying, test the build process locally:
+
 ```bash
 cd server
 npm install
@@ -65,7 +75,9 @@ npm start
 The server should start on http://localhost:8000
 
 ### Health Check
+
 The server includes a health check endpoint at `/health` that returns:
+
 ```json
 {
   "status": "OK",
@@ -74,3 +86,20 @@ The server includes a health check endpoint at `/health` that returns:
 ```
 
 Use this endpoint to verify your deployment is working correctly.
+
+### Method 3: Manual Deployment
+
+1. **Create New Project**
+   - Go to https://railway.app
+   - Click "New Project"
+   - Select "Empty Project"
+
+2. **Add Your Service**
+   - Click "Add Service"
+   - Select "GitHub Repo"
+   - Choose your repository
+
+3. **Configure Build Settings**
+   - **Build Command**: `npm install && npm run build`
+   - **Start Command**: `npm start`
+   - **Root Directory**: `/server`
