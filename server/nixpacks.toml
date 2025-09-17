@@ -2,7 +2,7 @@ providers = ["node"]
 env = ["NODE_VERSION=18"]
 
 [phases.setup]
-nixPkgs = ["pkgs.nodejs"]
+nixPkgs = ["pkgs.nodejs-18_x"]
 
 [phases.build]
 cmds = [
