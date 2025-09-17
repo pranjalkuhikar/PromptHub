@@ -13,6 +13,17 @@ const Page = () => {
     return <div>Loading...</div>;
   }
 
+  if (!data || data.length === 0) {
+    return (
+      <div className="min-h-[80vh] flex items-center justify-center">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold text-gray-600 mb-2">No prompts available</h2>
+          <p className="text-gray-500">Be the first to create a prompt!</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-[80vh]">
       <main className="container mx-auto p-4 flex flex-wrap justify-center gap-8 ">
