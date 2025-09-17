@@ -1,7 +1,7 @@
 import express from "express";
-import indexRoute from "./routes/index.route.ts";
+import indexRoute from "./routes/index.route";
 import cookieParser from "cookie-parser";
-import config from "./configs/config.ts";
+import config from "./configs/config";
 import morgan from "morgan";
 import cors from "cors";
 

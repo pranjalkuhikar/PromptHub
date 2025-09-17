@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import config from "../configs/config.ts";
+import config from "../configs/config";
 
 const connectDB = () => {
   mongoose
