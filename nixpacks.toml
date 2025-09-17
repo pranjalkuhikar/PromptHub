@@ -1,0 +1,11 @@
+providers = ["node"]
+env = ["NODE_VERSION=18"]
+
+[phases.setup]
+nixPkgs = ["pkgs.nodejs-18_x"]
+
+[phases.build]
+cmds = [
+  "cd server && npm install",
+  "cd server && npm run build"
+]

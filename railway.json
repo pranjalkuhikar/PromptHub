@@ -11,5 +11,5 @@
       "NODE_VERSION": "18"
     }
   },
-  "rootDirectory": "server"
+  "rootDirectory": ""
 }
