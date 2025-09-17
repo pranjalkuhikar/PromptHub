@@ -1,3 +1,11 @@
-[phases.setup]
 providers = ["node"]
+env = ["NODE_VERSION=18"]
+
+[phases.setup]
 nixPkgs = ["pkgs.nodejs"]
+
+[phases.build]
+cmds = [
+  "npm install",
+  "npm run build"
+]
