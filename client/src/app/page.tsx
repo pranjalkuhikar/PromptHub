@@ -10,14 +10,25 @@ const Page = () => {
   const currentUserId = user?.user._id;
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="min-h-[80vh] flex items-center justify-center">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold text-gray-600 mb-2">Loading....</h2>
+          <p className="text-gray-500">
+            Please wait Some time Prompt is Loading
+          </p>
+        </div>
+      </div>
+    );
   }
 
   if (!data || data.length === 0) {
     return (
       <div className="min-h-[80vh] flex items-center justify-center">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-gray-600 mb-2">No prompts available</h2>
+          <h2 className="text-2xl font-bold text-gray-600 mb-2">
+            No prompts available
+          </h2>
           <p className="text-gray-500">Be the first to create a prompt!</p>
         </div>
       </div>
