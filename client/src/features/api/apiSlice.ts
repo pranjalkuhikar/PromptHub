@@ -73,7 +73,7 @@ export const apiSlice = createApi({
     >({
       query: (body) => ({
         url: `/prompt/update/${body.id}`,
-        method: "POST",
+        method: "PUT",
         body,
       }),
       invalidatesTags: ["Auth"],
