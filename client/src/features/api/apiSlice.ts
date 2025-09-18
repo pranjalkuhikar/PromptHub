@@ -33,7 +33,7 @@ export const apiSlice = createApi({
     logout: builder.mutation({
       query: () => ({
         url: "/auth/logout",
-        method: "GET",
+        method: "POST",
       }),
       invalidatesTags: ["Auth"],
     }),
