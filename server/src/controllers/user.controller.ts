@@ -70,7 +70,11 @@ export const login = async (req: Request, res: Response) => {
 };
 
 export const logout = (req: Request, res: Response) => {
-  res.clearCookie("token");
+  res.clearCookie("token", {
+    httpOnly: true,
+    secure: config.NODE_ENV === "production",
+    sameSite: "none",
+  });
   res.status(200).json({ message: "Logout successful" });
 };
 
